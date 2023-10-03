@@ -1,0 +1,51 @@
+/*Node.js menyediakan EventEmitter class yang merupakan member events core module
+Setiap instance dari EventEmitter akan memiliki fungsi on. Pada fungsi tersebut,
+kita dapat menentukan aksi berdasarkan sebuah kejadian. Contohnya seperti ini: */
+
+const { EventEmitter } = require('events');
+ 
+const myEventEmitter = new EventEmitter();
+ 
+// fungsi yang akan dijalankan ketika event coffee-order terjadi
+const makeCoffee = ({ name }) => {
+    console.log(`Kopi ${name} telah dibuat!`);
+};
+ 
+// mendaftarkan fungsi makeCoffee sebagai listener event coffee-order
+myEventEmitter.on('coffee-order', makeCoffee);
+
+/*Fungsi on menerima dua buah argumen, 
+yang pertama adalah nama event dan 
+yang kedua adalah listener atau fungsi yang akan dieksekusi ketika event terjadi. 
+Dari kode di atas, jika terjadi event ‘coffee-order’,
+maka fungsi makeCoffee akan dijalankan.*/
+
+/*Anda bebas menentukan nama event yang diberikan pada argumen fungsi on. 
+Jika nama event lebih dari dua kata, 
+latihan terbaiknya adalah memisahkannya dengan tanda garis (-) bukan menggunakan spasi.*/
+
+/*Lantas bagaimana cara membangkitkan suatu event? 
+Setiap instance dari EventEmitter juga memiliki fungsi emit() 
+yang berguna untuk membangkitkan event. */
+
+//Contoh 
+const { EventEmitter } = require('events');
+ 
+const  myEventEmitter = new EventEmitter();
+ 
+const makeCoffee = ({ name }) => {
+    console.log(`Kopi ${name} telah dibuat!`);
+};
+ 
+myEventEmitter.on('coffee-order', makeCoffee);
+ 
+// Memicu event 'coffee-order' terjadi.
+myEventEmitter.emit('coffee-order', { name: 'Tubruk' }); 
+
+
+/*Fungsi emit() menerima nilai argumen sebanyak apa pun yang Anda mau,
+namun nilai yang pertama merupakan nama dari event yang akan dibangkitkan, 
+argumen kedua dan seterusnya adalah nilai yang akan digunakan untuk menjadi dari parameter fungsi listener.*/
+
+listener adalah semacam callback yang akan nnti di panggil ketika kita melakukan emit
+dengan event yg sama. jika event nya beda dia tidak akan di trigger
